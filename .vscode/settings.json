@@ -1,0 +1,8 @@
+{
+    "editor.formatOnSave": true,
+    "prettier.configPath": "",
+    "eslint.codeActionsOnSave.rules": [],
+    "typescript.format.insertSpaceAfterTypeAssertion": true,
+    "html.format.indentHandlebars": true,
+    "html.format.endWithNewline": true
+}
