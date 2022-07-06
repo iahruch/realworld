@@ -2,9 +2,14 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { AnyCatcher } from 'rxjs/internal/AnyCatcher';
+import { BackendErrorInterface } from 'src/app/shared/types/backedErrors.interface';
 import { registerAction } from '../../srote/actions/register.action';
 import { RegisterRequestInterface } from '../../types/registerRequest.interface';
-import { isSubmittedSelector } from './../../srote/selectors';
+import {
+  isSubmittedSelector,
+  validationErrorsSelector,
+} from './../../srote/selectors';
 
 @Component({
   selector: 'app-register',
@@ -14,8 +19,9 @@ import { isSubmittedSelector } from './../../srote/selectors';
 export class RegisterComponent implements OnInit {
   form!: FormGroup;
   isSubmitted$!: Observable<boolean>;
+  backendErrors$: Observable<any> | undefined;
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(private fb: FormBuilder, public store: Store) {}
 
   ngOnInit(): void {
     this.initializeForm();
@@ -24,6 +30,7 @@ export class RegisterComponent implements OnInit {
 
   initializeValue(): void {
     this.isSubmitted$ = this.store.pipe(select(isSubmittedSelector));
+    this.backendErrors$ = this.store.pipe(select(validationErrorsSelector));
   }
 
   initializeForm(): void {
