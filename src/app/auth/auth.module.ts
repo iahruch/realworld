@@ -11,6 +11,7 @@ import { AuthService } from './services/auth.service';
 import { EffectsModule } from '@ngrx/effects';
 import { RegisterEffect } from './srote/effects/register.effect';
 import { BackendErrorMessagesModule } from '../shared/modules/backendErrorMessages/backendErrorMessages.module';
+import { PersistanceService } from '../shared/services/persistance.service';
 
 @NgModule({
   imports: [
@@ -24,6 +25,6 @@ import { BackendErrorMessagesModule } from '../shared/modules/backendErrorMessag
   ],
   declarations: [RegisterComponent],
   exports: [RegisterComponent],
-  providers: [AuthService],
+  providers: [AuthService, PersistanceService],
 })
 export class AuthModule {}
