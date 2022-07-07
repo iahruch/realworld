@@ -12,6 +12,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { RegisterEffect } from './srote/effects/register.effect';
 import { BackendErrorMessagesModule } from '../shared/modules/backendErrorMessages/backendErrorMessages.module';
 import { PersistanceService } from '../shared/services/persistance.service';
+import { LoginComponent } from './componets/login/login.component';
+import { LoginEffect } from './srote/effects/login.effect';
 
 @NgModule({
   imports: [
@@ -20,10 +22,10 @@ import { PersistanceService } from '../shared/services/persistance.service';
     AuthRouterModule,
     ReactiveFormsModule,
     StoreModule.forFeature('auth', reducers),
-    EffectsModule.forFeature([RegisterEffect]),
+    EffectsModule.forFeature([RegisterEffect, LoginEffect]),
     BackendErrorMessagesModule,
   ],
-  declarations: [RegisterComponent],
+  declarations: [RegisterComponent, LoginComponent],
   exports: [RegisterComponent],
   providers: [AuthService, PersistanceService],
 })
