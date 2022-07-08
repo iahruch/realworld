@@ -2,6 +2,11 @@ import { state } from '@angular/animations';
 import { createReducer, on, Action } from '@ngrx/store';
 import { AuthStateInterface } from '../types/authState.interface';
 import {
+  getCurrentUserAction,
+  getCurrentUserFailureAction,
+  getCurrentUserSuccessAction,
+} from './actions/getCurrentUser.action';
+import {
   loginAction,
   loginFailureAction,
   loginSuccessAction,
@@ -14,6 +19,7 @@ import {
 
 const initState: AuthStateInterface = {
   isSubmitted: false,
+  isLoading: false,
   currentUser: null,
   isLoggedIn: null,
   validationsErrors: null,
@@ -73,6 +79,31 @@ const authReducer = createReducer(
       ...state,
       isSubmitted: false,
       validationsErrors: action.errors,
+    })
+  ),
+  on(
+    getCurrentUserAction,
+    (state): AuthStateInterface => ({
+      ...state,
+      isLoading: true,
+    })
+  ),
+  on(
+    getCurrentUserSuccessAction,
+    (state, action): AuthStateInterface => ({
+      ...state,
+      isLoading: false,
+      currentUser: action.currentUser,
+      isLoggedIn: true,
+    })
+  ),
+  on(
+    getCurrentUserFailureAction,
+    (state): AuthStateInterface => ({
+      ...state,
+      isLoading: false,
+      isLoggedIn: false,
+      currentUser: null,
     })
   )
 );
