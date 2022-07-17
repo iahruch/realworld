@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 import { AuthModule } from './auth/auth.module';
 import { StoreModule } from '@ngrx/store';
+import { StoreRouterConnectingModule, routerReducer } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
@@ -21,7 +22,8 @@ import { GlobalFeedModule } from './globalFeed/globalFeed.module';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({ router: routerReducer }),
+
     EffectsModule.forRoot([]),
 
     StoreDevtoolsModule.instrument({
@@ -29,8 +31,7 @@ import { GlobalFeedModule } from './globalFeed/globalFeed.module';
       logOnly: environment.production, // Restrict extension to log-only mode
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
-
-    EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot(),
     TopBarModule,
     GlobalFeedModule,
   ],
