@@ -1,0 +1,11 @@
+<div class="sidebar">
+  <p>Popular Tags</p>
+  <div *ngIf="isLoading$ | async">Loading tags...</div>
+
+  <!-- <div class="tag-list" *ngIf="popularTags$ | async">
+    <a *ngFor="let tag of popularTags$ | async" class="tag-default tag-pill">
+      {{ tag }}
+    </a>
+  </div> -->
+  <div >No tags are here... yet.</div>
+</div>
