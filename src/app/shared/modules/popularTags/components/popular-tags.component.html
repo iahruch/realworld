@@ -2,10 +2,13 @@
   <p>Popular Tags</p>
   <div *ngIf="isLoading$ | async">Loading tags...</div>
 
-  <!-- <div class="tag-list" *ngIf="popularTags$ | async">
+  <div class="tag-list" *ngIf="popularTags$ | async; else templateName">
     <a *ngFor="let tag of popularTags$ | async" class="tag-default tag-pill">
       {{ tag }}
     </a>
-  </div> -->
-  <div >No tags are here... yet.</div>
+  </div>
+  <ng-template #templateName>
+    <div>No tags are here... yet.</div>
+  </ng-template>
+  
 </div>

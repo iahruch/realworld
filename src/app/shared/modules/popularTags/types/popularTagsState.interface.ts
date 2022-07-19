@@ -1,6 +1,6 @@
-import { PopularTagType } from 'src/app/shared/types/popularTagType';
+import { PopularTagsType } from './popularTagsType';
 
 export interface PopularTagsStateInterface {
   isLoading: boolean;
-  data: PopularTagType | null;
+  data: PopularTagsType | null;
 }

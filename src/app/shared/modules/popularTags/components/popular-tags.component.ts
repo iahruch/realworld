@@ -12,7 +12,7 @@ import { PopularTagsType } from '../types/popularTagsType';
 })
 export class PopularTagsComponent implements OnInit {
   constructor(private store: Store) {}
-  // popularTags$: Observable<PopularTagsType>;
+  popularTags$!: Observable<PopularTagsType | null>;
   isLoading$!: Observable<boolean>;
 
   ngOnInit(): void {
@@ -24,9 +24,6 @@ export class PopularTagsComponent implements OnInit {
       select(isLoadingSelector),
       tap(data => console.log('popular tags ', data))
     );
-    this.store.pipe(
-      select(popularTagsSelector),
-      tap(data => console.log('popular tags ', data))
-    );
+    this.popularTags$ = this.store.pipe(select(popularTagsSelector));
   }
 }
