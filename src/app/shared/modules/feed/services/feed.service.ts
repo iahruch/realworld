@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { GetFeedResposeInterface } from '../types/getFeedResponse.interface';
 
@@ -10,6 +10,6 @@ export class FeedService {
 
   getFeed(url: string): Observable<GetFeedResposeInterface> {
     const fullUrl = `${environment.apiUrl}${url}`;
-    return this.http.get<GetFeedResposeInterface>(fullUrl);
+    return this.http.get<GetFeedResposeInterface>(fullUrl).pipe(delay(400));
   }
 }

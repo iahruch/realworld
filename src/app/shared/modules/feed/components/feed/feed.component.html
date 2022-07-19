@@ -1,7 +1,7 @@
-<app-loading *ngIf="isLoading$ | async"></app-loading>
+<app-loading *ngIf="!(feed$ | async)"></app-loading>
 <app-error-message *ngIf="errors$ | async"> </app-error-message>
 
-<ng-container *ngIf="(feed$ | async) as feed">
+<ng-container *ngIf="feed$ | async as feed">
   <div
     class="article-preview"
     *ngFor="let article of (feed$ | async)?.articles">
@@ -27,6 +27,7 @@
       <h1>{{ article.title }}</h1>
       <p>{{ article.description }}</p>
       <span>Read more...</span>
+      <app-tag-list [tags]="article.tagList"> </app-tag-list>
       <!-- <ul class="tag-list">
         <li class="tag-default tag-pill tag-outline">implementations</li> 
        </ul> -->

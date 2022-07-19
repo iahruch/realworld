@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subscription, delay, tap } from 'rxjs';
 import { ArticleInterface } from 'src/app/shared/types/article.interface';
 import { environment } from '../../../../../../environments/environment.prod';
 import { FeedService } from '../../services/feed.service';
@@ -44,7 +44,11 @@ export class FeedComponent implements OnInit, OnDestroy {
     this.initializeListeners();
   }
   initializeValues(): void {
-    this.isLoading$ = this.store.pipe(select(isLoadingSelector));
+    this.isLoading$ = this.store.pipe(
+      delay(400),
+      select(isLoadingSelector),
+      tap(i => console.log(i))
+    );
     this.errors$ = this.store.pipe(select(errorSelector));
     this.feed$ = this.store.pipe(select(feedSelector));
     this.baseUrl = this.router.url.split('?')[0];
