@@ -16,10 +16,14 @@ export class PopularTagsComponent implements OnInit {
   isLoading$!: Observable<boolean>;
 
   ngOnInit(): void {
-    this.store.dispatch(getPopularTags());
-    this.initListeners();
+    this.fetchData();
+    this.initValues();
   }
-  initListeners(): void {
+  fetchData(): void {
+    this.store.dispatch(getPopularTags());
+  }
+
+  initValues(): void {
     this.isLoading$ = this.store.pipe(
       select(isLoadingSelector),
       tap(data => console.log('popular tags ', data))

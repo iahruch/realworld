@@ -3,7 +3,9 @@ import { Component, NgModule } from '@angular/core';
 import { Router, RouterModule, Routes } from '@angular/router';
 import { BannerModule } from '../shared/modules/banner/banner.module';
 import { FeedModule } from '../shared/modules/feed/feed.module';
+import { FeedTogglerModule } from '../shared/modules/feedToggler/feedToggle.module';
 import { LoadingModule } from '../shared/modules/loading/loading.module';
+import { PopularTagsModule } from '../shared/modules/popularTags/popularTags.module';
 import { globalFeedComponent } from './components/globalFeed/globalFeedComponent';
 
 const routes: Routes = [
@@ -19,6 +21,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     FeedModule,
     BannerModule,
+    PopularTagsModule,
+    FeedTogglerModule,
   ],
   declarations: [globalFeedComponent],
   exports: [],

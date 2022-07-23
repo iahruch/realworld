@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/reducers';
 import { EffectsModule } from '@ngrx/effects';
 import { PopularTagsEffect } from './store/effects/popularTags.effect';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
@@ -14,6 +15,7 @@ import { PopularTagsEffect } from './store/effects/popularTags.effect';
     HttpClientModule,
     EffectsModule.forFeature([PopularTagsEffect]),
     StoreModule.forFeature('popularTags', reducers),
+    RouterModule,
   ],
   declarations: [PopularTagsComponent],
   exports: [PopularTagsComponent],
