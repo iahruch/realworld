@@ -15,6 +15,8 @@ import { PersistanceService } from './shared/services/persistance.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthIntercepter } from './shared/services/authintercepter.service';
 import { GlobalFeedModule } from './globalFeed/globalFeed.module';
+import { YourFeedModule } from './yourFeed/yourFeed.module';
+import { TagFeedModule } from './tagFeed/tagFeed.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +36,8 @@ import { GlobalFeedModule } from './globalFeed/globalFeed.module';
     StoreRouterConnectingModule.forRoot(),
     TopBarModule,
     GlobalFeedModule,
+    YourFeedModule,
+    TagFeedModule,
   ],
   providers: [
     PersistanceService,
